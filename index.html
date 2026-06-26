@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>Nomacast · Revue charte · Annotations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --blue:#2843EB;--blue-hover:#1D35CC;--coral:#E35534;--navy:#0b1929;
+  --ink:#1B2B6B;--muted:#5A6B9E;--line:#dae4f0;--line-soft:#eef3f9;--bg:#f3f6fa;
+  --ok:#1D9E75;--no:#E24B4A;--maybe:#BA7517;
+  --head:'Outfit',system-ui,sans-serif;--body:'Plus Jakarta Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);color:var(--ink);background:var(--bg);line-height:1.55;font-size:15px}
+a{color:var(--blue)}
+.topbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{font-family:var(--head);font-weight:700;font-size:18px;display:flex;align-items:center;gap:8px;letter-spacing:-.02em}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--coral)}
+.brand small{font-family:var(--body);font-weight:500;font-size:12px;color:var(--muted);margin-left:6px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-family:var(--head);font-weight:600;font-size:13px;padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;transition:.15s}
+.btn:hover{border-color:var(--blue);color:var(--blue)}
+.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn.primary:hover{background:var(--blue-hover);color:#fff}
+.btn.ghost-danger:hover{border-color:var(--no);color:var(--no)}
+.intro{max-width:1320px;margin:16px auto 0;padding:0 22px;color:var(--muted);font-size:14px}
+.intro b{color:var(--ink);font-weight:600}
+.wrap{max-width:1320px;margin:14px auto 60px;padding:0 22px;display:grid;grid-template-columns:170px minmax(0,1fr) 320px;gap:18px;align-items:start}
+.rail{position:sticky;top:74px;display:flex;flex-direction:column;gap:6px}
+.rail button{text-align:left;font-family:var(--head);font-weight:600;font-size:13px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.rail button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.rail .pip{font-size:11px;font-weight:600;width:auto;min-width:18px;height:18px;padding:0 5px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center}
+.rail .pip.ok{background:var(--ok);color:#fff}.rail .pip.no{background:var(--no);color:#fff}.rail .pip.maybe{background:var(--maybe);color:#fff}.rail .pip.count{background:var(--line-soft);color:var(--muted)}
+.rail button.active .pip.count{background:rgba(255,255,255,.2);color:#fff}
+.stage{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.stage-head{padding:13px 16px;border-bottom:1px solid var(--line-soft)}
+.stage-head h2{font-family:var(--head);font-size:17px;font-weight:600;letter-spacing:-.01em}
+.stage-head p{font-size:13px;color:var(--muted);margin-top:2px}
+.imgwrap{position:relative;cursor:crosshair;line-height:0}
+.imgwrap img{width:100%;display:block}
+.pin{position:absolute;transform:translate(-50%,-100%);z-index:5;width:26px;height:26px;border-radius:50% 50% 50% 2px;background:var(--coral);color:#fff;font-family:var(--head);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);cursor:pointer;rotate:45deg}
+.pin span{rotate:-45deg}
+.pin.sel{background:var(--blue);scale:1.15}
+.panel{position:sticky;top:74px;display:flex;flex-direction:column;gap:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+.card h3{font-family:var(--head);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px}
+.verdict{display:flex;gap:7px}
+.verdict button{flex:1;font-family:var(--head);font-weight:600;font-size:13px;padding:9px 0;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer}
+.verdict button[data-v=oui].on{background:var(--ok);color:#fff;border-color:var(--ok)}
+.verdict button[data-v=non].on{background:var(--no);color:#fff;border-color:var(--no)}
+.verdict button[data-v=avoir].on{background:var(--maybe);color:#fff;border-color:var(--maybe)}
+textarea{width:100%;font-family:var(--body);font-size:14px;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:9px 10px;resize:vertical;min-height:70px;background:#fff}
+textarea:focus{outline:none;border-color:var(--blue)}
+.pinlist{display:flex;flex-direction:column;gap:9px;max-height:46vh;overflow:auto}
+.pinrow{border:1px solid var(--line-soft);border-radius:8px;padding:8px;display:flex;gap:8px;align-items:flex-start}
+.pinrow.sel{border-color:var(--blue);background:#f6f9ff}
+.pinrow .n{flex:none;width:22px;height:22px;border-radius:50%;background:var(--coral);color:#fff;font-family:var(--head);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center}
+.pinrow textarea{min-height:42px}
+.pinrow .del{flex:none;border:none;background:none;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:2px}
+.pinrow .del:hover{color:var(--no)}
+.empty{font-size:13px;color:var(--muted);font-style:italic;padding:6px 0}
+.hint{font-size:12px;color:var(--muted);margin-top:8px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+@media(max-width:1100px){.wrap{grid-template-columns:1fr}.rail{position:static;flex-direction:row;flex-wrap:wrap}.panel{position:static}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><span class="dot"></span>nomacast<small>revue charte · 9 déclinaisons</small></div>
+  <div class="actions">
+    <button class="btn" id="btn-import">Importer</button>
+    <button class="btn" id="btn-reset">Réinitialiser</button>
+    <button class="btn primary" id="btn-export">Exporter mes annotations</button>
+  </div>
+</div>
+
+<p class="intro"><b>Comment annoter :</b> choisis une déclinaison à gauche, <b>clique sur l'image</b> à l'endroit qui pose question pour poser une épingle, puis écris ton commentaire dans le panneau de droite. Donne un verdict global (Oui / À revoir / Non) et une note par variante. Quand tu as fini, clique <b>Exporter mes annotations</b> et envoie le fichier (ou colle le texte) à Jérôme. Tes notes sont sauvegardées automatiquement dans ce navigateur.</p>
+
+<div class="wrap">
+  <nav class="rail" id="rail"></nav>
+
+  <section class="stage">
+    <div class="stage-head"><h2 id="v-name"></h2><p id="v-desc"></p>
+      <div class="legend"><span><i style="background:#1D9E75"></i>Oui</span><span><i style="background:#BA7517"></i>À revoir</span><span><i style="background:#E24B4A"></i>Non</span><span><i style="background:#E35534"></i>Épingle</span></div>
+    </div>
+    <div class="imgwrap" id="imgwrap"><img id="v-img" alt="" draggable="false"/></div>
+  </section>
+
+  <aside class="panel">
+    <div class="card">
+      <h3>Verdict global</h3>
+      <div class="verdict" id="verdict">
+        <button data-v="oui">Oui</button>
+        <button data-v="avoir">À revoir</button>
+        <button data-v="non">Non</button>
+      </div>
+      <textarea id="note" placeholder="Ce qui va / ce qui ne va pas pour cette déclinaison…" style="margin-top:10px"></textarea>
+    </div>
+    <div class="card">
+      <h3>Épingles <span id="pin-count" style="color:var(--coral)"></span></h3>
+      <div class="pinlist" id="pinlist"></div>
+      <p class="hint">Astuce : clique une épingle sur l'image pour la retrouver ici.</p>
+    </div>
+  </aside>
+</div>
+
+<script>
+const VARIANTS=[
+ {id:'a',name:'A — Sobre',desc:'Hero navy · CTA bleu · corail en accent fin (mot hero, chiffres, eyebrows).'},
+ {id:'b',name:'B — Corail dominant',desc:'Hero navy · CTA corail partout · bleu en secondaire.'},
+ {id:'c',name:'C — Bleu vif',desc:'Hero teinté bleu marque (tuile du logo) · CTA corail.'},
+ {id:'d',name:'D — Clair / éditorial',desc:'Hero clair, texte navy · accents bleu + corail · CTA bleu.'},
+ {id:'e',name:'E — Bleu profond marque',desc:'Sections sombres en bleu marque #101C6B · CTA corail.'},
+ {id:'f',name:'F — Premium retenu',desc:'Corail rare (mot hero + CTA) · eyebrows et chiffres restent bleus.'},
+ {id:'g',name:'G — Corail chaleureux',desc:'Section cas clients teintée corail clair · CTA corail.'},
+ {id:'h',name:'H — Bleu pastel doux',desc:'Sombre bleu adouci · cas clients bleu clair · CTA bleu.'},
+ {id:'i',name:'I — Minimal clair',desc:'Hero clair, cas clients blanc · accents corail fins · CTA bleu.'}
+];
+const KEY='nmc-charte-annot-v1';
+const VLABEL={oui:'Oui',non:'Non',avoir:'À revoir'};
+let data=load();
+let current='a';
+let sel=null;
+
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+function vd(id){if(!data[id])data[id]={verdict:null,note:'',pins:[]};return data[id]}
+
+const rail=document.getElementById('rail');
+function renderRail(){
+  rail.innerHTML='';
+  VARIANTS.forEach(v=>{
+    const d=vd(v.id);
+    const b=document.createElement('button');
+    b.className=(v.id===current?'active':'');
+    let pip;
+    if(d.verdict)pip='<span class="pip '+(d.verdict==='oui'?'ok':d.verdict==='non'?'no':'maybe')+'">'+VLABEL[d.verdict]+'</span>';
+    else pip='<span class="pip count">'+(d.pins.length||0)+'</span>';
+    b.innerHTML='<span>'+v.id.toUpperCase()+'</span>'+pip;
+    b.title=v.name;
+    b.onclick=()=>{current=v.id;sel=null;renderAll()};
+    rail.appendChild(b);
+  });
+}
+
+const img=document.getElementById('v-img');
+function renderStage(){
+  const v=VARIANTS.find(x=>x.id===current);
+  document.getElementById('v-name').textContent=v.name;
+  document.getElementById('v-desc').textContent=v.desc;
+  img.src='previews/'+current+'.jpg';
+  img.alt='Déclinaison '+v.name;
+  renderPins();
+}
+const imgwrap=document.getElementById('imgwrap');
+function renderPins(){
+  imgwrap.querySelectorAll('.pin').forEach(p=>p.remove());
+  vd(current).pins.forEach((p,i)=>{
+    const el=document.createElement('div');
+    el.className='pin'+(sel===i?' sel':'');
+    el.style.left=p.x+'%';el.style.top=p.y+'%';
+    el.innerHTML='<span>'+(i+1)+'</span>';
+    el.onclick=(e)=>{e.stopPropagation();sel=i;renderList();renderPins();focusPin(i)};
+    imgwrap.appendChild(el);
+  });
+}
+imgwrap.addEventListener('click',e=>{
+  if(e.target.closest('.pin'))return;
+  const r=imgwrap.getBoundingClientRect();
+  const x=((e.clientX-r.left)/r.width*100);
+  const y=((e.clientY-r.top)/r.height*100);
+  vd(current).pins.push({x:+x.toFixed(2),y:+y.toFixed(2),text:''});
+  sel=vd(current).pins.length-1;save();renderPins();renderList();renderRail();focusPin(sel);
+});
+
+const pinlist=document.getElementById('pinlist');
+function renderList(){
+  const pins=vd(current).pins;
+  document.getElementById('pin-count').textContent=pins.length?'('+pins.length+')':'';
+  if(!pins.length){pinlist.innerHTML='<p class="empty">Aucune épingle. Clique sur l\'image pour en ajouter une.</p>';return}
+  pinlist.innerHTML='';
+  pins.forEach((p,i)=>{
+    const row=document.createElement('div');
+    row.className='pinrow'+(sel===i?' sel':'');
+    row.innerHTML='<div class="n">'+(i+1)+'</div>';
+    const ta=document.createElement('textarea');
+    ta.value=p.text;ta.placeholder='Ton commentaire sur ce point…';
+    ta.oninput=()=>{p.text=ta.value;save()};
+    ta.onfocus=()=>{sel=i;renderPins();highlightRow(i)};
+    const del=document.createElement('button');
+    del.className='del';del.innerHTML='&times;';del.title='Supprimer';
+    del.onclick=()=>{pins.splice(i,1);if(sel===i)sel=null;save();renderPins();renderList();renderRail()};
+    row.appendChild(ta);row.appendChild(del);
+    pinlist.appendChild(row);
+  });
+}
+function focusPin(i){const rows=pinlist.querySelectorAll('.pinrow');if(rows[i]){const ta=rows[i].querySelector('textarea');ta.focus();rows[i].scrollIntoView({block:'nearest'})}}
+function highlightRow(){renderList()}
+
+const verdict=document.getElementById('verdict');
+verdict.querySelectorAll('button').forEach(b=>{
+  b.onclick=()=>{const d=vd(current);d.verdict=(d.verdict===b.dataset.v?null:b.dataset.v);save();renderVerdict();renderRail()};
+});
+function renderVerdict(){
+  const d=vd(current);
+  verdict.querySelectorAll('button').forEach(b=>b.classList.toggle('on',d.verdict===b.dataset.v));
+}
+const note=document.getElementById('note');
+note.oninput=()=>{vd(current).note=note.value;save()};
+function renderNote(){note.value=vd(current).note||''}
+
+function renderAll(){renderRail();renderStage();renderVerdict();renderNote();renderList()}
+
+document.getElementById('btn-export').onclick=()=>{
+  let md='# Revue charte Nomacast — annotations\n\nExporté le '+new Date().toLocaleString('fr-FR')+'\n\n';
+  VARIANTS.forEach(v=>{
+    const d=vd(v.id);
+    const has=d.verdict||d.note||d.pins.some(p=>p.text);
+    md+='## '+v.name+'\n';
+    md+='_'+v.desc+'_\n\n';
+    md+='- Verdict : '+(d.verdict?VLABEL[d.verdict]:'(non renseigné)')+'\n';
+    if(d.note)md+='- Note : '+d.note.replace(/\n/g,' ')+'\n';
+    if(d.pins.length){
+      md+='- Épingles :\n';
+      d.pins.forEach((p,i)=>{md+='  '+(i+1)+'. ['+Math.round(p.x)+'% / '+Math.round(p.y)+'%] '+(p.text||'(sans texte)')+'\n'});
+    }
+    if(!has)md+='- _(rien noté)_\n';
+    md+='\n';
+  });
+  md+='\n---\nDONNÉES (à coller dans « Importer » pour recharger) :\n```json\n'+JSON.stringify(data)+'\n```\n';
+  const blob=new Blob([md],{type:'text/markdown'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='annotations-charte-nomacast.md';a.click();
+  navigator.clipboard&&navigator.clipboard.writeText(md).then(()=>{},()=>{});
+  alert('Annotations exportées (fichier .md téléchargé + copié dans le presse-papier).');
+};
+document.getElementById('btn-import').onclick=()=>{
+  const raw=prompt('Colle ici le bloc JSON exporté précédemment :');
+  if(!raw)return;
+  try{const j=JSON.parse(raw.trim());data=j;save();sel=null;renderAll();alert('Annotations importées.')}
+  catch(e){alert('JSON invalide.')}
+};
+document.getElementById('btn-reset').onclick=()=>{
+  if(confirm('Effacer TOUTES tes annotations ?')){data={};save();sel=null;renderAll()}
+};
+
+renderAll();
+</script>
+</body>
+</html>
