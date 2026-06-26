@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>Nomacast · Atelier couleurs charte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--head:'Outfit',system-ui,sans-serif;--body:'Plus Jakarta Sans',system-ui,sans-serif;--line:#dae4f0;--line-soft:#eef3f9;--muted:#5A6B9E;--ink:#1B2B6B;--bg:#f3f6fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);color:var(--ink);background:var(--bg);font-size:15px;line-height:1.5}
+.topbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{font-family:var(--head);font-weight:700;font-size:18px;display:flex;align-items:center;gap:8px;letter-spacing:-.02em}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:#E35534}
+.brand small{font-family:var(--body);font-weight:500;font-size:12px;color:var(--muted);margin-left:6px}
+.nav a{font-family:var(--head);font-weight:600;font-size:13px;text-decoration:none;color:var(--ink);padding:8px 14px;border:1px solid var(--line);border-radius:8px}
+.nav a.cur{background:#0b1929;color:#fff;border-color:#0b1929}
+.layout{display:grid;grid-template-columns:330px minmax(0,1fr);gap:0;align-items:start}
+.controls{position:sticky;top:61px;height:calc(100vh - 61px);overflow:auto;background:#fff;border-right:1px solid var(--line);padding:18px}
+.controls h2{font-family:var(--head);font-size:15px;font-weight:600;margin-bottom:4px}
+.controls .sub{font-size:13px;color:var(--muted);margin-bottom:16px}
+.grp{margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--line-soft)}
+.grp:last-child{border:none}
+.grp>label{display:block;font-family:var(--head);font-weight:600;font-size:13px;margin-bottom:8px}
+.color-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.color-row input[type=color]{width:34px;height:34px;border:1px solid var(--line);border-radius:8px;padding:2px;background:#fff;cursor:pointer}
+.color-row .cl{font-size:13px;flex:1}
+.color-row .hex{font-family:var(--head);font-size:12px;color:var(--muted)}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{font-family:var(--head);font-weight:600;font-size:12px;padding:8px 12px;border-radius:7px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer}
+.seg button.on{background:#2843EB;color:#fff;border-color:#2843EB}
+.btnrow{display:flex;gap:8px;margin-top:6px}
+.btn{font-family:var(--head);font-weight:600;font-size:13px;padding:10px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;flex:1}
+.btn.primary{background:#2843EB;color:#fff;border-color:#2843EB}
+.btn:hover{filter:brightness(.97)}
+.presets{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.presets button{font-family:var(--head);font-weight:600;font-size:12px;padding:7px 11px;border-radius:7px;border:1px solid var(--line);background:#fff;cursor:pointer}
+
+/* ===== PREVIEW (piloté par variables) ===== */
+.stagewrap{padding:22px}
+.preview{
+  --blue:#2843EB;--blue-h:#1D35CC;--coral:#E35534;--coral-h:#c74424;
+  --dark:#0b1929;--title:#1B2B6B;--cas-bg:#ffffff;
+  --cta:var(--blue);--accent2:var(--coral);--accentWord:var(--coral);
+  --heroText:#ffffff;--heroSub:#a9bdd6;--heroOverlay:rgba(11,25,41,.80);
+  border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff;font-family:var(--body)}
+.pv-h{font-family:var(--head);letter-spacing:-.03em;line-height:1.06;font-weight:700}
+.pv-nav{display:flex;align-items:center;justify-content:space-between;background:#fff;padding:13px 22px;border-bottom:1px solid #dae4f0}
+.pv-logo{font-family:var(--head);font-weight:700;font-size:18px;color:var(--title);display:flex;align-items:center;gap:7px}
+.pv-logo .d{width:8px;height:8px;border-radius:50%;background:var(--coral)}
+.pv-links{display:flex;align-items:center;gap:14px;font-size:12px;color:var(--muted)}
+.pv-links .pill{background:#EAF0FE;color:var(--blue);padding:7px 12px;border-radius:7px;font-weight:600}
+.pv-cta{background:var(--cta);color:#fff;font-family:var(--head);font-weight:600;padding:8px 15px;border-radius:8px}
+.pv-hero{position:relative;padding:46px 30px 40px;background-image:var(--heroImg);background-size:cover;background-position:center}
+.pv-hero .ov{position:absolute;inset:0;background:var(--heroOverlay)}
+.pv-hero .in{position:relative}
+.pv-ey{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px}
+.pv-title{font-size:42px;color:var(--heroText)}
+.pv-title .ac{color:var(--accentWord)}
+.pv-sub{color:var(--heroSub);font-size:14px;font-weight:300;max-width:460px;margin:16px 0 22px;line-height:1.55}
+.pv-sub b{color:var(--heroText);font-weight:600}
+.pv-btns{display:flex;gap:10px;flex-wrap:wrap}
+.pv-ghost{border:1.5px solid color-mix(in srgb,var(--heroText) 40%,transparent);color:var(--heroText);font-family:var(--head);font-weight:600;font-size:13px;padding:10px 19px;border-radius:8px}
+.pv-cta2{background:var(--cta);color:#fff;font-family:var(--head);font-weight:600;font-size:13px;padding:12px 22px;border-radius:8px}
+.pv-logos{background:#fff;padding:22px 24px;display:flex;gap:26px;flex-wrap:wrap;align-items:center;justify-content:center;opacity:.75}
+.pv-logos span{font-family:var(--head);font-weight:700;color:#9fb0c6;font-size:15px}
+.pv-dispo{background:var(--dark);padding:38px 30px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.pv-dispo h3{font-family:var(--head);font-weight:700;font-size:25px;color:#fff;letter-spacing:-.02em}
+.pv-dispo .price{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:18px 22px;text-align:right}
+.pv-dispo .price .n{font-family:var(--head);font-weight:700;font-size:30px;color:#fff}
+.pv-dispo .price .n small{font-size:13px;color:#9fb0c6}
+.pv-dispo .price .b{display:block;margin-top:10px;background:var(--cta);color:#fff;font-family:var(--head);font-weight:600;font-size:12px;padding:9px 0;border-radius:7px}
+.pv-stats{background:#fff;display:grid;grid-template-columns:repeat(3,1fr);padding:30px 20px}
+.pv-stats .st{text-align:center;border-right:1px solid var(--line-soft)}
+.pv-stats .st:last-child{border:none}
+.pv-stats .num{font-family:var(--head);font-weight:700;font-size:38px;color:var(--title)}
+.pv-stats .num .c{color:var(--accent2)}
+.pv-stats .lab{font-size:11px;color:var(--muted);margin-top:3px;padding:0 12px}
+.pv-cas{background:var(--cas-bg);padding:34px 30px}
+.pv-cas .eb{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:8px}
+.pv-cas h3{font-family:var(--head);font-weight:700;font-size:26px;color:var(--title);margin-bottom:18px}
+.pv-cas .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pv-cas .card{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.pv-cas .card .ph{height:78px;background:#cdd8e6}
+.pv-cas .card .bd{padding:11px}
+.pv-cas .card .t{font-family:var(--head);font-weight:600;font-size:12px;color:var(--title);line-height:1.3}
+.pv-cas .card .lnk{font-size:11px;color:var(--blue);font-weight:600;margin-top:6px;display:block}
+.pv-foot{background:var(--dark);padding:18px 30px;display:flex;align-items:center;justify-content:space-between}
+.pv-foot .l{font-family:var(--head);font-weight:700;font-size:15px;color:#fff;display:flex;align-items:center;gap:7px}
+.pv-foot .l .d{width:8px;height:8px;border-radius:50%;background:var(--coral)}
+.pv-foot .r{font-size:11px;color:#6f88a6}
+@media(max-width:980px){.layout{grid-template-columns:1fr}.controls{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><span class="dot"></span>nomacast<small>atelier couleurs · live</small></div>
+  <div class="nav"><a href="index.html">Galerie + annotations</a><a href="atelier.html" class="cur">Atelier couleurs</a></div>
+</div>
+
+<div class="layout">
+  <aside class="controls">
+    <h2>Atelier couleurs</h2>
+    <p class="sub">Modifie chaque zone en direct. Quand une combinaison te plaît, clique « Exporter » et envoie le code à Jérôme.</p>
+
+    <div class="grp">
+      <label>Départs rapides</label>
+      <div class="presets" id="presets"></div>
+    </div>
+
+    <div class="grp">
+      <label>Couleurs de base</label>
+      <div class="color-row"><input type="color" id="c-blue" value="#2843EB"><span class="cl">Primaire (bleu)</span><span class="hex" id="hx-blue">#2843EB</span></div>
+      <div class="color-row"><input type="color" id="c-coral" value="#E35534"><span class="cl">Accent (corail)</span><span class="hex" id="hx-coral">#E35534</span></div>
+      <div class="color-row"><input type="color" id="c-dark" value="#0b1929"><span class="cl">Sections sombres</span><span class="hex" id="hx-dark">#0B1929</span></div>
+      <div class="color-row"><input type="color" id="c-title" value="#1B2B6B"><span class="cl">Titres</span><span class="hex" id="hx-title">#1B2B6B</span></div>
+    </div>
+
+    <div class="grp">
+      <label>Hero (fond)</label>
+      <div class="seg" id="seg-hero"><button data-v="dark">Sombre</button><button data-v="blue">Bleu vif</button><button data-v="light">Clair</button></div>
+    </div>
+    <div class="grp">
+      <label>Mot accentué du hero</label>
+      <div class="seg" id="seg-word"><button data-v="coral">Corail</button><button data-v="blue">Bleu</button><button data-v="white">Blanc</button></div>
+    </div>
+    <div class="grp">
+      <label>Boutons CTA</label>
+      <div class="seg" id="seg-cta"><button data-v="blue">Bleu</button><button data-v="coral">Corail</button></div>
+    </div>
+    <div class="grp">
+      <label>Eyebrows &amp; chiffres</label>
+      <div class="seg" id="seg-accent2"><button data-v="coral">Corail</button><button data-v="blue">Bleu</button></div>
+    </div>
+    <div class="grp">
+      <label>Fond section « Cas clients »</label>
+      <div class="seg" id="seg-cas"><button data-v="white">Blanc</button><button data-v="coral">Corail clair</button><button data-v="blue">Bleu clair</button></div>
+    </div>
+
+    <div class="grp">
+      <div class="btnrow"><button class="btn" id="btn-reset">Réinitialiser</button><button class="btn primary" id="btn-export">Exporter</button></div>
+    </div>
+  </aside>
+
+  <main class="stagewrap">
+    <div class="preview" id="preview">
+      <div class="pv-nav">
+        <div class="pv-logo"><span class="d"></span>nomacast</div>
+        <div class="pv-links"><span>Prestations</span><span>Tarifs</span><span>Agences</span><span>FAQ</span><span class="pill">Outils interactifs</span><span class="pv-cta">Devis sous 24h</span></div>
+      </div>
+      <div class="pv-hero">
+        <div class="ov"></div>
+        <div class="in">
+          <div class="pv-ey">Captation live &middot; streaming corporate</div>
+          <div class="pv-title pv-h">Tournage vidéo<br><span class="ac">&amp; live streaming</span><br>d'événement d'entreprise.</div>
+          <p class="pv-sub">3 caméras 4K clé en main, installation en <b>2h chrono</b>, vidéo livrée le <b>jour même</b>.</p>
+          <div class="pv-btns"><span class="pv-cta2">Devis sous 24h</span><span class="pv-ghost">Voir nos cas clients</span></div>
+        </div>
+      </div>
+      <div class="pv-logos"><span>LVMH</span><span>Figma</span><span>Morning</span><span>Sanofi</span><span>esl</span><span>Dext</span></div>
+      <div class="pv-dispo">
+        <h3>6 dispositifs pour<br>vos événements B2B.</h3>
+        <div class="price"><div class="n">1 500<small> € HT</small></div><span class="b">Configurer mon devis</span></div>
+      </div>
+      <div class="pv-stats">
+        <div class="st"><div class="num pv-h">15<span class="c">+</span></div><div class="lab">ans d'expertise</div></div>
+        <div class="st"><div class="num pv-h">2<span class="c">h</span></div><div class="lab">installation</div></div>
+        <div class="st"><div class="num pv-h">4<span class="c">K</span></div><div class="lab">Ultra HD native</div></div>
+      </div>
+      <div class="pv-cas">
+        <div class="eb">Études de cas</div>
+        <h3 class="pv-h">Cas clients en images.</h3>
+        <div class="grid">
+          <div class="card"><div class="ph"></div><div class="bd"><div class="t">(LA)HORDE × Louvre, 13 caméras</div><span class="lnk">Lire l'étude →</span></div></div>
+          <div class="card"><div class="ph"></div><div class="bd"><div class="t">Soirées customer Figma</div><span class="lnk">Lire l'étude →</span></div></div>
+          <div class="card"><div class="ph"></div><div class="bd"><div class="t">Morning, 300+ événements</div><span class="lnk">Lire l'étude →</span></div></div>
+        </div>
+      </div>
+      <div class="pv-foot"><div class="l"><span class="d"></span>nomacast</div><div class="r">Paris &middot; France &middot; Europe</div></div>
+    </div>
+  </main>
+</div>
+
+<script>
+const HERO_IMG="url('assets/hero.webp')";
+const KEY='nmc-charte-atelier-v1';
+const DEF={blue:'#2843EB',coral:'#E35534',dark:'#0b1929',title:'#1B2B6B',hero:'dark',word:'coral',cta:'blue',accent2:'coral',cas:'white'};
+let S=load();
+
+const PRESETS={
+ 'A · Sobre':{...DEF},
+ 'B · Corail':{...DEF,cta:'coral'},
+ 'C · Bleu vif':{...DEF,hero:'blue',cta:'coral'},
+ 'D · Clair':{...DEF,hero:'light',word:'coral'},
+ 'G · Chaleureux':{...DEF,cta:'coral',cas:'coral'},
+ 'H · Pastel':{...DEF,dark:'#16285C',cas:'blue'}
+};
+
+function load(){try{return Object.assign({},DEF,JSON.parse(localStorage.getItem(KEY)))}catch(e){return {...DEF}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(S))}
+const pv=document.getElementById('preview');
+function shade(hex,p){let n=parseInt(hex.slice(1),16),r=n>>16,g=n>>8&255,b=n&255;r=Math.round(r*(1-p));g=Math.round(g*(1-p));b=Math.round(b*(1-p));return '#'+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1)}
+function hexToRgba(hex,a){let n=parseInt(hex.slice(1),16);return 'rgba('+(n>>16)+','+(n>>8&255)+','+(n&255)+','+a+')'}
+function casColor(v){return v==='coral'?'#FAECE7':v==='blue'?'#EAF0FE':'#ffffff'}
+
+function apply(){
+  pv.style.setProperty('--blue',S.blue);
+  pv.style.setProperty('--blue-h',shade(S.blue,.18));
+  pv.style.setProperty('--coral',S.coral);
+  pv.style.setProperty('--coral-h',shade(S.coral,.18));
+  pv.style.setProperty('--dark',S.dark);
+  pv.style.setProperty('--title',S.title);
+  pv.style.setProperty('--cta',S.cta==='coral'?S.coral:S.blue);
+  pv.style.setProperty('--accent2',S.accent2==='blue'?S.blue:S.coral);
+  pv.style.setProperty('--accentWord',S.word==='blue'?S.blue:S.word==='white'?'#ffffff':S.coral);
+  pv.style.setProperty('--cas-bg',casColor(S.cas));
+  pv.style.setProperty('--heroImg',HERO_IMG);
+  // hero modes
+  if(S.hero==='light'){
+    pv.style.setProperty('--heroOverlay','rgba(243,246,250,.93)');
+    pv.style.setProperty('--heroText',S.title);
+    pv.style.setProperty('--heroSub','#5A6B9E');
+  }else if(S.hero==='blue'){
+    pv.style.setProperty('--heroOverlay',hexToRgba(S.blue,.9));
+    pv.style.setProperty('--heroText','#ffffff');
+    pv.style.setProperty('--heroSub','rgba(255,255,255,.8)');
+  }else{
+    pv.style.setProperty('--heroOverlay',hexToRgba(S.dark,.80));
+    pv.style.setProperty('--heroText','#ffffff');
+    pv.style.setProperty('--heroSub','rgba(255,255,255,.72)');
+  }
+  // sync controls
+  ['blue','coral','dark','title'].forEach(k=>{document.getElementById('c-'+k).value=S[k];document.getElementById('hx-'+k).textContent=S[k].toUpperCase()});
+  seg('seg-hero',S.hero);seg('seg-word',S.word);seg('seg-cta',S.cta);seg('seg-accent2',S.accent2);seg('seg-cas',S.cas);
+  save();
+}
+function seg(id,val){document.querySelectorAll('#'+id+' button').forEach(b=>b.classList.toggle('on',b.dataset.v===val))}
+
+['blue','coral','dark','title'].forEach(k=>{
+  document.getElementById('c-'+k).addEventListener('input',e=>{S[k]=e.target.value;apply()});
+});
+[['seg-hero','hero'],['seg-word','word'],['seg-cta','cta'],['seg-accent2','accent2'],['seg-cas','cas']].forEach(([id,key])=>{
+  document.querySelectorAll('#'+id+' button').forEach(b=>b.onclick=()=>{S[key]=b.dataset.v;apply()});
+});
+
+const pc=document.getElementById('presets');
+Object.keys(PRESETS).forEach(name=>{const b=document.createElement('button');b.textContent=name;b.onclick=()=>{S=Object.assign({},PRESETS[name]);apply()};pc.appendChild(b)});
+
+document.getElementById('btn-reset').onclick=()=>{S={...DEF};apply()};
+
+document.getElementById('btn-export').onclick=()=>{
+  const blueH=shade(S.blue,.18), coralH=shade(S.coral,.18);
+  const cta=S.cta==='coral';
+  const acc2=S.accent2==='blue'?S.blue:S.coral;
+  const word=S.word==='blue'?S.blue:S.word==='white'?'#ffffff':S.coral;
+  let css='/* Charte Nomacast — combinaison atelier */\n:root{\n';
+  css+='  --cyan:'+S.blue+';--cyan-hover:'+blueH+';--cyan-light:'+hexToRgba(S.blue,.07)+';\n';
+  css+='  --ink:'+S.title+';--ink-mid:'+S.title+';\n';
+  css+='  --orange:'+S.coral+';--orange-hover:'+coralH+';\n';
+  css+='  --navy:'+S.dark+';--navy-mid:'+shade(S.dark,.12)+';\n}\n';
+  css+='.hero-title .accent{color:'+word+'!important}\n';
+  css+='.section-eyebrow,.eyebrow,.apropos-eyebrow{color:'+acc2+'!important}\n';
+  css+='.chiffre-num .c{color:'+acc2+'!important}\n';
+  if(cta){
+    css+='.btn-primary,.price-cta,.form-submit{background:'+S.coral+'!important;box-shadow:0 2px 6px '+hexToRgba(S.coral,.35)+'!important}\n';
+    css+='.btn-primary:hover,.price-cta:hover,.form-submit:hover{background:'+coralH+'!important}\n';
+  }
+  if(S.cas!=='white') css+='#cas-clients{background:'+casColor(S.cas)+'!important}\n';
+  if(S.hero==='blue') css+='.hero-video-overlay{background:'+hexToRgba(S.blue,.90)+'!important}\n';
+  else if(S.hero==='light') css+='.hero-video-overlay{background:rgba(243,246,250,.95)!important}\n.hero-title{color:'+S.title+'!important}\n.hero-subtitle{color:#5A6B9E!important}\n.hero-subtitle strong{color:'+S.title+'!important}\n.hero-kpi,.hero-kpi *{color:'+S.title+'!important}\n';
+  else css+='.hero-video-overlay{background:'+hexToRgba(S.dark,.80)+'!important}\n';
+  const cfg='\n/* config: '+JSON.stringify(S)+' */\n';
+  const out=css+cfg;
+  navigator.clipboard&&navigator.clipboard.writeText(out).then(()=>{},()=>{});
+  const blob=new Blob([out],{type:'text/css'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='charte-nomacast.css';a.click();
+  alert('Combinaison exportée (charte-nomacast.css téléchargé + copié dans le presse-papier). Envoie-le à Jérôme pour l\'appliquer à la vraie page.');
+};
+
+apply();
+</script>
+</body>
+</html>
