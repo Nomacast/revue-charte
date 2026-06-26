@@ -193,7 +193,7 @@ function renderList(){
     const ta=document.createElement('textarea');
     ta.value=p.text;ta.placeholder='Ton commentaire sur ce point…';
     ta.oninput=()=>{p.text=ta.value;save()};
-    ta.onfocus=()=>{sel=i;renderPins();highlightRow(i)};
+    ta.onfocus=()=>{sel=i;renderPins();markSelRow(i)};
     const del=document.createElement('button');
     del.className='del';del.innerHTML='&times;';del.title='Supprimer';
     del.onclick=()=>{pins.splice(i,1);if(sel===i)sel=null;save();renderPins();renderList();renderRail()};
@@ -202,7 +202,7 @@ function renderList(){
   });
 }
 function focusPin(i){const rows=pinlist.querySelectorAll('.pinrow');if(rows[i]){const ta=rows[i].querySelector('textarea');ta.focus();rows[i].scrollIntoView({block:'nearest'})}}
-function highlightRow(){renderList()}
+function markSelRow(i){pinlist.querySelectorAll('.pinrow').forEach((r,j)=>r.classList.toggle('sel',j===i))}
 
 const verdict=document.getElementById('verdict');
 verdict.querySelectorAll('button').forEach(b=>{
